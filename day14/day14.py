@@ -29,16 +29,15 @@ def safety_factor(seconds:int) -> int:
     return a*b*c*d
 
 def fewest_seconds() -> int:
-    min_sf = float("inf")
-    best_iteration = None
+    min_factor = min_seconds = None
 
     for s in range(W * H):
-        sf = safety_factor(s)
-        if sf < min_sf:
-            min_sf = sf
-            best_iteration = s
+        factor = safety_factor(s)
+        if min_factor is None or factor < min_factor:
+            min_factor = factor
+            min_seconds = s
     
-    return best_iteration
+    return min_seconds
 
 
 print(f"""
