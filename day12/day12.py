@@ -8,9 +8,9 @@ with open("day12/input.txt", "r") as f:
     W = len(M[0])
 
 
-def part1() -> int:
+def solve() -> int:
     seen = set()
-    total_price = 0
+    total_price_1 = total_price_2 = 0
 
     for r in range(H):
         for c in range(W):
@@ -30,13 +30,18 @@ def part1() -> int:
                             region.add((nr, nc))
                             seen.add((nr, nc))
 
-                total_price += len(region) * len(sides)
+                total_price_1 += len(region) * len(sides)
                 # surrounding = [ (pr+dr, pc+dc) for pr,pc in sides for dr,dc in D if (pr+dr,pc+dc) not in region ]
                 # and then what?
+                
+                # total_price_2 += len(region) * len(???)
 
-    return total_price
 
+    return total_price_1, total_price_2
+
+part1, part2 = solve()
 
 print(f"""
-    Part 1 = {part1()}
+    Part 1 = {part1}
+    Part 2 = {part2}
 """)
