@@ -29,12 +29,15 @@ def solve() -> int:
                             q.append((nr, nc))
                             region.add((nr, nc))
                             seen.add((nr, nc))
+               
+                fences = 0
+                for x, y in region:
+                    for nx, ny, x1, y1, x2, y2 in [ (x+1, y, x, y - 1, x + 1, y - 1), (x - 1, y, x, y - 1, x - 1, y - 1), (x, y + 1, x - 1, y, x - 1, y + 1), (x, y - 1, x - 1, y, x - 1, y - 1) ]:
+                        if (nx, ny) not in region and not ((x1, y1) in region and (x2, y2) not in region):
+                            fences += 1
 
                 total_price_1 += len(region) * len(sides)
-                # surrounding = [ (pr+dr, pc+dc) for pr,pc in sides for dr,dc in D if (pr+dr,pc+dc) not in region ]
-                # and then what?
-                
-                # total_price_2 += len(region) * len(???)
+                total_price_2 += len(region) * fences
 
 
     return total_price_1, total_price_2
